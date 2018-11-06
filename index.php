@@ -49,7 +49,12 @@
   array_push($json, $info);
   file_put_contents('./database.json', json_encode($json));
 
-  header('Location: https://www.zalando.fr/nike-sportswear-m2k-tekno-baskets-basses-ni111a09n-c11.html');
+
+  $url = 'https://www.zalando.fr/nike-sportswear-m2k-tekno-baskets-basses-ni111a09n-c11.html';
+  if ($_GET['redirect']) {
+    $url = $_GET['redirect'];
+  }
+  header('Location: ' . $url . '');
   die();
 
 ?>
