@@ -9,6 +9,7 @@
   <script src="main.js"></script>
 </head>
 <body>
+test
 <?php
 
   include("./plugin.php");
@@ -17,13 +18,13 @@
   echo "<br>IP               ".$data->ip();
   echo "<br>Operative System ".$data->os();
   echo "<br>Browser          ".$data->browser();
-  echo "<br>Screen height    ".$data->height();
-  echo "<br>Screen width     ".$data->width();
-  echo "<br>Java enabled     ".$data->javaenabled();
-  echo "<br>Cookie enabled   ".$data->cookieenabled();
+  // echo "<br>Screen height    ".$data->height();
+  // echo "<br>Screen width     ".$data->width();
+  // echo "<br>Java enabled     ".$data->javaenabled();
+  // echo "<br>Cookie enabled   ".$data->cookieenabled();
   echo "<br>Language         ".$data->language();
   echo "<br>Architecture     ".$data->architecture();
-  echo "<br>Device           ".$data->device();
+  // echo "<br>Device           ".$data->device();
   echo "<br>Country          ".$data->geo('country');
   echo "<br>Region           ".$data->geo('region');
   echo "<br>Continent        ".$data->geo('continent');
