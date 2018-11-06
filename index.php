@@ -40,6 +40,12 @@
     exit();
   }
 
+  if ($_GET['drop']) {
+    file_put_contents('./database.json', json_encode([]));
+    echo 'clear done!';
+    exit();
+  }
+
   array_push($json, $info);
   file_put_contents('./database.json', json_encode($json));
 
