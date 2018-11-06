@@ -3,39 +3,48 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Page Title</title>
+  <title>Redirecting ...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="main.js"></script>
 </head>
 <body>
-test
 <?php
 
   include("./plugin.php");
+
   $data = new GetDataPlugin();
 
-  echo "<br>IP               ".$data->ip();
-  echo "<br>Operative System ".$data->os();
-  echo "<br>Browser          ".$data->browser();
-  // echo "<br>Screen height    ".$data->height();
-  // echo "<br>Screen width     ".$data->width();
-  // echo "<br>Java enabled     ".$data->javaenabled();
-  // echo "<br>Cookie enabled   ".$data->cookieenabled();
-  echo "<br>Language         ".$data->language();
-  echo "<br>Architecture     ".$data->architecture();
-  // echo "<br>Device           ".$data->device();
-  echo "<br>Country          ".$data->geo('country');
-  echo "<br>Region           ".$data->geo('region');
-  echo "<br>Continent        ".$data->geo('continent');
-  echo "<br>City             ".$data->geo('city');
-  echo "<br>Logitude         ".$data->geo('logitude');
-  echo "<br>Latitude         ".$data->geo('latitude');
-  echo "<br>Currency         ".$data->geo('currency');
-  echo "<br>Provetor         ".$data->provetor();
-  echo "<br>Agent            ".$data->agent();
-  echo "<br>Referer          ".$data->referer();
-  echo "<br>Date             ".$data->getdate();
+  $info = array(
+    'ip' => $data->ip(),
+    'os' => $data->os(),
+    'browser' => $data->browser(),
+    'lang' => $data->language(),
+    'archi' => $data->architecture(),
+    'provetor' => $data->provetor(),
+    'agent' => $data->agent(),
+    'referer' => $data->referer(),
+    'date' => $data->getdate(),
+  );
+
+  $json = json_decode(file_get_contents('./database.json'));
+
+  if ($_GET['show']) {
+    foreach ($json as $info) {
+      echo '<div>';
+      foreach ($info as $key => $val) {
+        echo '<p>' . $key . ': ' . $val . '</p>';
+      }
+      echo '<a href="http://api.ipstack.com/'.$info->ip.'?access_key=02f7aea2ce3c192351c4f43c5bf6f3cd">get lat/long</a>';
+      echo '</div>';
+      echo '<br /><br /><br /><br />';
+    }
+    exit();
+  }
+
+  array_push($json, $info);
+  file_put_contents('./database.json', json_encode($json));
+
+  header('Location: https://www.zalando.fr/nike-sportswear-m2k-tekno-baskets-basses-ni111a09n-c11.html');
+  die();
 
 ?>
 </body>
