@@ -76,28 +76,28 @@ class GetDataPlugin{
         elseif(strstr($unix, 'IPOD')==true)       {$device="Portable media players ";}return $device;}
 
     function geo($what){
-        $g=unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'].''));
+        $g=unserialize(file_get_contents('http://api.ipstack.com/' . $_SERVER['REMOTE_ADDR'] . '?access_key=02f7aea2ce3c192351c4f43c5bf6f3cd&format=1'));
         switch ($what) {
             case 'country':
-                return $g['geoplugin_countryName'];
+                return $g['country_name'];
                 break;
             case 'region':
-                return $g['geoplugin_region'];
+                return $g['region_code'];
                 break;
             case 'city':
-                return $g['geoplugin_city'];
+                return $g['city'];
                 break;
             case 'logitude':
-                return $g['geoplugin_longitude'];
+                return $g['longitude'];
                 break; 
             case 'latitude':
-                return $g['geoplugin_latitude'];
+                return $g['latitude'];
                 break; 
             case 'continent':
-                return $g['geoplugin_continentCode'];
+                return $g['continent_name'];
                 break; 
             case 'currency':
-                return $g['geoplugin_currencyCode'];
+                return $g['zip'];
                 break;    
         }
     }
